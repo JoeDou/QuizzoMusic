@@ -1,0 +1,13 @@
+{
+  "name": "QuizzoMusic",
+  "version": "0.0.1",
+  "private": true,
+  "main": "app.js",
+  "dependencies": {
+    "bluebird": "1.0.8",
+    "express": "~3.4.8",
+    "express-partials": "~0.2.0",
+    "jwt-simple": "^0.2.0",
+    "request": "^2.34.0"
+  }
+}
