@@ -19,7 +19,11 @@ exports.JWTSECRET = 'beatsmusic';
 
 *note: save client ID and secret as string and JWTSECRETE can be any word you like
 
-install node.js
+install node.js, npm, bower
+
+run npm install
+
+run bower install
 
 run app.js
 
