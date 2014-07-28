@@ -11,7 +11,8 @@ exports.Beats = {
   requestToken: 'https://partner.api.beatsmusic.com/oauth2/token',
   client_id: config.KEY,
   client_secret: config.SECRET,
-  redirect_uri: 'http://localhost:3000/auth/beatsmusic/callback'
+  redirect_uri: 'http://localhost:3000/auth/beatsmusic/callback',
+  api: 'https://partner.api.beatsmusic.com/v1/api'
 };
 
 exports.jwt = {
