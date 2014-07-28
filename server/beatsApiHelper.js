@@ -60,15 +60,17 @@ exports.requestToken = function(req,res){
       });
 
     });
+  }else{
+    res.send(400,'no code');
   }
 };
 
-exports.createQuestions = function(req,res,next){
+exports.createQuestions = function(req,res){
   var data = querystring.parse(req.url);
   console.log('genre data', data.data);
   var token = req.headers['x-access-token'];
   if (!token) {
-    next(new Error('No token'));
+    res.redirect('/#/login/');
   } else {
     var secret = constant.jwt.secret;
     var userData = jwt.decode(token, secret);

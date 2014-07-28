@@ -12,23 +12,29 @@ angular.module('quizzoMusic.controllers',[])
 })
 
 .controller('GameCtrl', function($scope, createQuestions) {
+  $scope.index = 0;
+  $scope.data = {};
+  var bam = new BeatsAudioManager("myBeatsPlayer");
+  bam.on("error", handleError);
+  
   createQuestions.generate().then(function(data){
     console.log('questions', data);
+    bam.on("ready", handleReady(data));
+    $scope.data = data.data;
   });
 
+  $scope.nextQuestion = function(index){
+    bam.stop();
+    console.log('in questions');
+    console.log('data',$scope.data);
+    bam.identifier = $scope.data.questions[index].id;
+    bam.load();
+    $scope.index++;
+  };
 
-  var bam = new BeatsAudioManager("myBeatsPlayer");
-  bam.on("ready", handleReady);
-  bam.on("error", handleError);
-
-  function handleReady() {
-    bam.clientId = 'pv434b4qe2x9qhwqemx5uwmg';
-    bam.authentication = {
-        access_token:'43rjk2bcrv5x6kzczb3p4mth',
-        user_id:'205374912020349184'
-    };
-    bam.identifier = 'tr58141709';
-    // bam.load();
+  function handleReady(data) {
+    bam.clientId = data.clientId;
+    bam.authentication = data.authentication;
   }
 
   function handleError(value) {
