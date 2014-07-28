@@ -1,8 +1,46 @@
-<div>
-  <h1> Game Board </h1>
 
+<div class="gameboard">
+  <div ng-hide='index'>
+    <div class='rules' ng-show='first'>
+      <ol>
+        <li> Click Start</li>
+        <li> Listen To The Song</li>
+        <li> Select The Title </li>
+        <li> Click Next Question/Submit</li>
+        <li> HAVE FUN!!!! (IE-Drink For Each Wrong Answer)</li>
+      </ol>
+    </div>
+    <div class='quotes' ng-show='!first'>
+      <p ng-show='win'>
+        My eyeballs are burning from the pure awesomeness of your knowledge
+      </p>
+      <p ng-show='!win'>
+        Get with the program and listen to more BEATS MUSIC!!
+      </p>
+    </div>
+  </div>
+  <div ng-show='index'>
+    <div class='score'>Score {{score}}/{{index-1}}</div>
+    <div class='questionTitle'>Question {{index}}</div>
+  </div>
+  <form>
+    <div class='questions' ng-show='index'>
+      <input type="radio" ng-model="answer" value="0" />{{choice[0]}}<br/>
+      <input type="radio" ng-model="answer" value="1" />{{choice[1]}}<br/>
+      <input type="radio" ng-model="answer" value="2" />{{choice[2]}}<br />
+      <input type="radio" ng-model="answer" value="3" />{{choice[3]}}<br />
+    </div>
+    <div class='buttons'>
+      <div ng-hide='index'>
+        <button class="button" ng-click="start()">Start</button>
+      </div>
+      <div ng-show='index && !lastQuestion'>
+        <button class="button" ng-click="nextQuestion(index)">Next Question</button>
+      </div>
+      <div ng-show='index && lastQuestion'>
+        <button class="button" ng-click="submit()">submit</button>
+      </div>
+    </div>
+  </form>
 </div>
-<div>
-  <h1> Place Questions here </h1>
-  <button ng-click="nextQuestion(index)">Next Question</button>
-</div>
+<div class = 'signout' ng-click='signout()'>Sign Out</div>

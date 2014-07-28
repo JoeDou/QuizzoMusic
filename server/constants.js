@@ -1,3 +1,4 @@
+// setup config.js wich includes client_ID, client_secret and JWT password
 try {
   var config = require('../config.js');
 }
@@ -6,6 +7,7 @@ catch (e) {
   console.log(e);
 }
 
+// set beats API variables
 exports.Beats = {
   authorize: 'https://partner.api.beatsmusic.com/v1/oauth2/authorize',
   requestToken: 'https://partner.api.beatsmusic.com/oauth2/token',
@@ -17,6 +19,7 @@ exports.Beats = {
   genres: '/api/genres',
 };
 
+// set JWT password
 exports.jwt = {
   secret: config.JWTSECRET
 };

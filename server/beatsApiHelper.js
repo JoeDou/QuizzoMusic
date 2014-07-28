@@ -8,13 +8,13 @@ exports.redirect = function(req, res){
   var url = constant.Beats.authorize + '?response_type=code'+
     '&redirect_uri=' + constant.Beats.redirect_uri +
     '&client_id='+ constant.Beats.client_id;
-  console.log('url', url);
+  // console.log('url', url);
   res.redirect(url);
 };
 
 exports.requestToken = function(req,res){
   var data = querystring.parse(req.url);
-  console.log('parse url', data);
+  // console.log('parse url', data);
   if (data.code){
 
     var reqObj = {
@@ -31,9 +31,9 @@ exports.requestToken = function(req,res){
 
     request(reqObj, function(error, data, body){
       //create JWT
-      console.log('body', body);
+      // console.log('body', body);
       var bodyData = JSON.parse(body);
-      console.log('JSON parse body', bodyData);
+      // console.log('JSON parse body', bodyData);
 
       userReqObj = {
         method: 'GET',
@@ -67,7 +67,7 @@ exports.requestToken = function(req,res){
 
 exports.createQuestions = function(req,res){
   var data = querystring.parse(req.url);
-  console.log('genre data', data.data);
+  // console.log('genre data', data.data);
   var token = req.headers['x-access-token'];
   if (!token) {
     res.redirect('/#/login/');
@@ -81,11 +81,11 @@ exports.createQuestions = function(req,res){
       method: 'GET',
       url: url,
     };
-    console.log('req obj', genreObj);
+    // console.log('req obj', genreObj);
 
     request(genreObj, function(error, genreData, genreBody){
 
-      console.log('genre body', genreBody);
+      // console.log('genre body', genreBody);
       var data = parseGenreData(JSON.parse(genreBody).data);
 
       var retObj = {
@@ -97,7 +97,7 @@ exports.createQuestions = function(req,res){
         data: data
       };
 
-      console.log('data',retObj);
+      // console.log('data',retObj);
       res.send(200,retObj);
 
     });
@@ -110,7 +110,7 @@ function parseGenreData(genreObj){
   // console.log('parsed data', genreObj);
   var index = Math.floor(Math.random()*genreObj.length);
   // console.log('index', index);
-  output['description'] = genreObj[index].description;
+  output['description'] = genreObj[index].name;
   var length = genreObj[index].refs.tracks.length;
   // console.log('length', length);
 
@@ -126,14 +126,21 @@ function parseGenreData(genreObj){
     var offset = 0;
     for (var j =0; j<3; j++){
       var qIndex = start+j+offset;
-      if (qIndex >= length){
-        offset = j*-1;
+      if ((length-1) < qIndex){
+        offset = j*(-1);
         qIndex = 0;
         start = 0;
       } else if(qIndex === trackNum){
         offset++;
         qIndex++;
       }
+      // patch for undefined issues, need a better solution
+      if (genreObj[index].refs.tracks[qIndex] === undefined){
+        offset = j*(-1);
+        qIndex = 0;
+        start = 0;
+      }
+
       question['wrong'].push(genreObj[index].refs.tracks[qIndex].display);
     }
     questions.push(question);

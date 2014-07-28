@@ -1,7 +1,7 @@
 angular.module('quizzoMusic', ['quizzoMusic.controllers', 'quizzoMusic.services', 'ui.router'])
 
 .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
-
+  //set up UI router for Angular
   $stateProvider
 
     .state('login', {
@@ -15,7 +15,7 @@ angular.module('quizzoMusic', ['quizzoMusic.controllers', 'quizzoMusic.services'
     })
 
     .state('auth', {
-      url: '/login/auth/:ID',
+      url: '/login/auth/:ID', //Note: ID here is setup to catch JWT that's attached from NodeJS redirect
       views: {
         'home': {
           templateUrl: 'templates/home-login.html',
@@ -35,7 +35,7 @@ angular.module('quizzoMusic', ['quizzoMusic.controllers', 'quizzoMusic.services'
     });
 
   $urlRouterProvider.otherwise('/login');
-  // add $httpInterceptor into the array of interceptors.
+  // add $httpInterceptor into the array of interceptors; attaches JWT to each http message to node server
   $httpProvider.interceptors.push('AttachTokens');
 });
 

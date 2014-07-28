@@ -1,11 +1,6 @@
 angular.module('quizzoMusic.services',[])
 
-.factory('ServerUrls', function(){
-  return {
-    url: 'http://localhost:3000'
-  };
-})
-
+// http intercepter to attach JWT to each HTTP call to the nodeJS server
 .factory('AttachTokens', function ($window) {
   // stop all out going request then look in local storage and find the user's token
   // then add it to the header so the server can use the token
@@ -26,17 +21,14 @@ angular.module('quizzoMusic.services',[])
   // "id": "eg97074088215970048",
   // "username": "beatshiphop",
   // "name": "Beats Hip-Hop",
-  // "verified": false,
-  // "total_follows": 0,
-  // "total_followed_by": 76900,
-  // "playlist_count": 890,
-  // "user_id": "97074088224358656",
-  // "type": "genre"
 
+  // currently only hip-hop
+  // TODO: add a new page to allow user to select genre
+  // Generate questions for the Quizz by calling the node server
   var generate = function () {
     return $http({
       method: 'GET',
-      url: '/questions?&data=eg97074088215970048',
+      url: '/questions?&data=eg97074088215970048', //hardcode hip-hop ID
     }).then(function (resp) {
       return resp.data;
     });
@@ -47,6 +39,7 @@ angular.module('quizzoMusic.services',[])
   };
 })
 
+// sign out service; delete user JWT
 .factory('signout', function($location, $window){
 
   var signout = function () {

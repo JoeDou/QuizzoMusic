@@ -1,0 +1,137 @@
+body {
+  background-color: #EBEBEB;
+}
+
+h1, h2 {
+  text-align: center;
+}
+
+.logo {
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: solid;
+  border-width: 4px;
+  border-color: black;
+  border-radius: 10px;
+  background-color: white;
+}
+
+.logoText {
+  text-align: center;
+  font-size: 14px;
+  font-family: Arial,Helvetica,sans-serif;
+  color: red;
+  padding: 5px;
+}
+
+.beats{
+  width: 95%;
+  height: auto;
+  padding-top: 10px;
+  padding-left: 10px;
+}
+
+.header{
+  font-family: 'Shadows Into Light', cursive;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  padding: 10px;
+}
+
+.header .first{
+  font-size: 80px;
+  color: red;
+  font-weight: 900;
+}
+
+.header .word{
+  font-size: 50px;
+  color: black;
+}
+
+.gameboard{
+  width: 450px;
+  height: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: solid;
+  border-width: 4px;
+  border-color: black;
+  border-radius: 10px;
+  background-color: white;
+  font-family: 'Shadows Into Light', cursive;
+}
+
+.rules{
+  padding-left: 5px;
+  font-size: 25px;
+}
+
+.quotes{
+  padding-left: 10px;
+  font-size: 40px;
+}
+
+.score{
+  font-size: 25px;
+  float: right;
+  padding-right: 20px;
+}
+
+.questionTitle{
+  clear:both;
+  text-align: center;
+  font-size: 40px;
+}
+
+.questions{
+  font-size: 18px;
+  padding: 20px
+}
+
+.buttons{
+  padding-top: 20px;
+  text-align: center;
+}
+
+.button {
+  border-top: 1px solid #000000;
+  background: #b83399;
+  background: -webkit-gradient(linear, left top, left bottom, from(#ff0000), to(#b83399));
+  background: -webkit-linear-gradient(top, #ff0000, #b83399);
+  background: -moz-linear-gradient(top, #ff0000, #b83399);
+  background: -ms-linear-gradient(top, #ff0000, #b83399);
+  background: -o-linear-gradient(top, #ff0000, #b83399);
+  padding: 10px 20px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+  -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+  -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+  box-shadow: rgba(0,0,0,1) 0 1px 0;
+  text-shadow: rgba(0,0,0,.4) 0 1px 0;
+  color: white;
+  font-family: 'Shadows Into Light', cursive;
+  font-size: 20px;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer
+}
+.button:hover {
+  border-top-color: #ba0bb4;
+  background: #ba0bb4;
+  color: #ccc;
+}
+.button:active {
+  border-top-color: #ff0000;
+  background: #ff0000;
+}
+
+.signout{
+  padding: 20px;
+  cursor: pointer;
+  text-align: center;
+  color: red;
+}
