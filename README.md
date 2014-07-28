@@ -3,16 +3,19 @@ Quizzo Music
 ===
 This is the public repo for Music Travia Game built by Joe Dou
 
-This game interact with Beats Music API to generate triva question
+This game interacts with Beats Music API to generate triva questions
 
 ===
 ### To Run
-create a config.js file at root directory (same level as this README file)
+Create a config.js file at root directory (same level as this README file)
 included in the config.js file:
 
 exports.KEY = [client_ID];
+
 exports.SECRET = [client_secret];
+
 exports.JWTSECRET = 'beatsmusic';
+
 
 *note: save client ID and secret as string and JWTSECRETE can be any word you like
 
