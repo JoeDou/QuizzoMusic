@@ -10,9 +10,11 @@ This game interact with Beats Music API to generate triva question
 create a config.js file at root directory (same level as this README file)
 included in the config.js file:
 
-exports.KEY = [client_ID]; // don't forget to save ID as string
+exports.KEY = [client_ID];
 exports.SECRET = [client_secret];
-exports.JWTSECRET = 'beatsmusic'; //password can be changed to anything you like
+exports.JWTSECRET = 'beatsmusic';
+
+*note: save client ID and secret as string and JWTSECRETE can be any word you like
 
 install node.js
 
