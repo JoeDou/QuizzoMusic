@@ -1,0 +1,10 @@
+{
+  "name": "QuizzoMusic",
+  "version": "0.0.1",
+  "authors": [],
+  "license": "MIT",
+  "dependencies": {
+    "angular": "~1.2.18",
+    "angular-ui-router": "~0.2.10"
+  }
+}

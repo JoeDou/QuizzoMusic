@@ -1,6 +1,6 @@
 var express = require('express');
-var querystring = require('querystring')
-var apiHelper = require('./beatsApiHelper.js')
+var querystring = require('querystring');
+var apiHelper = require('./beatsApiHelper.js');
 
 var app = express();
 
@@ -18,15 +18,11 @@ app.configure(function() {
 });
 
 // public routes
-// app.get('/signin', questions);
-
 app.get('/auth/beatsmusic', apiHelper.redirect);
 
 app.get('/auth/beatsmusic/callback', apiHelper.requestToken);
 
-
-
-// app.get('/questions', questions);
+app.get('/app', apiHelper.requestToken);
 
 app.all('*', function (req, res) {
   res.send(404, 'bad route');

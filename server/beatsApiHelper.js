@@ -13,38 +13,41 @@ exports.redirect = function(req, res){
 };
 
 exports.requestToken = function(req,res){
-    var data = querystring.parse(req.url);
-    console.log('parse url', data);
-    if (data.code){
+  var data = querystring.parse(req.url);
+  console.log('parse url', data);
+  if (data.code){
 
-      var reqObj = {
-        method: 'POST',
-        url: constant.Beats.requestToken,
-        form: {
-          code: data.code,
-          client_id: constant.Beats.client_id,
-          client_secret: constant.Beats.client_secret,
-          redirect_uri: constant.Beats.redirect_uri,
-          grant_type: 'authorization_code'
-        }
+    var reqObj = {
+      method: 'POST',
+      url: constant.Beats.requestToken,
+      form: {
+        code: data.code,
+        client_id: constant.Beats.client_id,
+        client_secret: constant.Beats.client_secret,
+        redirect_uri: constant.Beats.redirect_uri,
+        grant_type: 'authorization_code'
+      }
+    };
+
+    request(reqObj, function(error, data, body){
+      //create JWT
+      console.log('body', body);
+      var bodyData = JSON.parse(body);
+      console.log('JSON parse body', bodyData);
+      var payload = {
+        access_token: bodyData.result.access_token,
+        refresh_token: bodyData.result.refresh_token,
       };
+      var secret = constant.jwt.secret;
+      console.log('secrert', secret);
 
-      request(reqObj, function(error, data, body){
-        //create JWT
-        console.log('body', body);
-        var bodyData = JSON.parse(body);
-        console.log('JSON parse body', bodyData);
-        var payload = {
-          access_token: bodyData.result.access_token,
-          refresh_token: bodyData.result.refresh_token,
-        };
-        var secret = constant.jwt.secret;
-        console.log('secrert', secret);
+      // encode
+      var token = jwt.encode(payload, secret);
+      console.log('token', token);
 
-        // encode
-        var token = jwt.encode(payload, secret);
+      // serve another page
 
-        res.send(200, token);
-      });
-    }
+      res.redirect('/#/login/auth/' + token);
+    });
+  }
 };

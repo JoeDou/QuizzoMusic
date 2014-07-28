@@ -1,4 +1,5 @@
 node_modules/
+client/lib/
 config.js
 _DS_Store
 DS_Store
