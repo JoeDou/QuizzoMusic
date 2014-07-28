@@ -12,7 +12,9 @@ exports.Beats = {
   client_id: config.KEY,
   client_secret: config.SECRET,
   redirect_uri: 'http://localhost:3000/auth/beatsmusic/callback',
-  api: 'https://partner.api.beatsmusic.com/v1/api'
+  api: 'https://partner.api.beatsmusic.com/v1',
+  me: '/api/me',
+  genres: '/api/genres',
 };
 
 exports.jwt = {

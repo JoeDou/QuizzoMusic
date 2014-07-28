@@ -11,7 +11,7 @@ angular.module('quizzoMusic.services',[])
   // then add it to the header so the server can use the token
   var attach = {
     request: function (object) {
-      var jwt = $window.localStorage.getItem('com.shortly');
+      var jwt = $window.localStorage.getItem('com.quizzomusic');
       if (jwt) {
         object.headers['x-access-token'] = jwt;
       }
@@ -22,11 +22,36 @@ angular.module('quizzoMusic.services',[])
   return attach;
 })
 
-.factory('signout', function($http, ServerUrls, $location, $window){
+.factory('createQuestions', function($http){
+  // "id": "eg97074088215970048",
+  // "username": "beatshiphop",
+  // "name": "Beats Hip-Hop",
+  // "verified": false,
+  // "total_follows": 0,
+  // "total_followed_by": 76900,
+  // "playlist_count": 890,
+  // "user_id": "97074088224358656",
+  // "type": "genre"
+
+  var generate = function () {
+    return $http({
+      method: 'GET',
+      url: '/questions?&data=eg97074088215970048',
+    }).then(function (resp) {
+      return resp.data;
+    });
+  };
+
+  return{
+    generate:generate
+  };
+})
+
+.factory('signout', function($location, $window){
 
   var signout = function () {
     $window.localStorage.removeItem('com.quizzomusic');
-    $location.path('/signin');
+    $location.path('/login');
   };
 
   return{

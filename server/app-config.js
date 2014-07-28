@@ -22,7 +22,7 @@ app.get('/auth/beatsmusic', apiHelper.redirect);
 
 app.get('/auth/beatsmusic/callback', apiHelper.requestToken);
 
-app.get('/app', apiHelper.requestToken);
+app.get('/questions', apiHelper.createQuestions);
 
 app.all('*', function (req, res) {
   res.send(404, 'bad route');
