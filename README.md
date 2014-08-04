@@ -35,4 +35,4 @@ Quizzo Music uses the following technologies:
   - HTML5/CSS3
 
 ### License
-Famospace is licensed under the [MIT license.](https://github.com/Famospace/Famo.us-Monospace/blob/master/LICENSE.txt)
+QuizzoMusic is licensed under the [MIT license.](https://github.com/JoeDou/QuizzoMusic/blob/master/LICENSE.txt)
